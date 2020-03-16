@@ -18,7 +18,7 @@ class Test extends Component{
     }
     render() {
         return (
-            // 博彦测试页面
+            // 博彦测试
             <div className="test">
                 {/*loading 加载*/}
                 {
