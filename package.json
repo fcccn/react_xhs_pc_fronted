@@ -12,7 +12,8 @@
     "react-scripts": "3.4.0",
     "react-router-dom": "latest",
     "antd": "latest",
-    "js-cookie": "latest"
+    "js-cookie": "latest",
+    "axios": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
