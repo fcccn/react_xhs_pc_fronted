@@ -1,0 +1,99 @@
+@import '../../static/style/custom.scss';
+.login {
+  width: 100%;
+  height: 100vh;
+  background-color: $color-blue;
+  @include flex-center();
+  .login-load {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+  }
+  .login-container {
+    width: 800px;
+    height: 500px;
+    position: relative;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url('../../static/images/brand_login_bg.png');
+    .login_head {
+      @include positionAbsolute($top: 20px, $left: 20px);
+      img {
+        width: 46px;
+        height: auto;
+      }
+      .head-title {
+        font-size: 10px;
+        color: $color-title;
+      }
+    }
+    .login-content {
+      @include positionAbsolute($top: 146px, $left: 56px);
+      color: $color-black;
+      font-size: 18px;
+      font-weight: 700;
+      .content-title {
+        color: $color-one;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 600;
+      }
+      .content-tips {
+        margin-top: 28px;
+        font-size: 10px;
+        color: $color-nine;
+        font-family: MicrosoftYaHei;
+      }
+      input {
+        margin-top: 8px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 12px;
+        color: #010101;
+        width: 189px;
+        border: none;
+        outline: none;
+      }
+      .content-info {
+        width: 191px;
+        @include flex-center($justify: space-between);
+        .info-btn {
+          font-size: 10px;
+          margin-top: 8px;
+          width: 60px;
+          height: 24px;
+          cursor: pointer;
+          line-height: 24px;
+          color: $color-blue;
+          text-align: center;
+        }
+        input {
+          width: 120px;
+        }
+      }
+      input::-webkit-input-placeholder {
+        color: $color-nine;
+        font-weight: 400;
+      }
+      .content-line {
+        width: 191px;
+        height: 1px;
+        background-color: $color-e;
+      }
+      .content-submit {
+        margin-top: 28px;
+        width: 191px;
+        height: 26px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #fff;
+        line-height: 26px;
+        text-align: center;
+        border-radius: 13px;
+        background-color: $color-blue;
+      }
+    }
+  }
+}

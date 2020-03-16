@@ -1,0 +1,109 @@
+@import '../../static/style/custom.scss';
+.index {
+  height: 100vh;
+  background-color: $color-bgm;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .index-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: $color-white;
+    height: 75px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 1px 8px 0;
+    .header {
+      height: 75px;
+      width: 1200px;
+      @include flex-center($justify: space-between);
+      margin: 0 auto;
+      .header-left {
+        width: auto;
+        @include flex-center($justify: flex-start);
+        .left-logo {
+          width: 268px;
+          height: auto;
+          img {
+            width: 58px;
+            height: auto;
+            display: block;
+            margin-bottom: 5px;
+          }
+          span {
+            margin-top: 5px;
+            font-size: 12px;
+          }
+        }
+        .line {
+          width: 1px;
+          height: 57px;
+          background-color: $color-e;
+        }
+        .left-tips {
+          margin-left: 30px;
+          color: $color-one;
+          font-size: 18px;
+          position: relative;
+          height: 75px;
+          @include flex-center($justify: flex-start);
+          .tips-xcx {
+            margin-left: 15px;
+            height: 32px;
+            width: 32px;
+            border-radius: 50px;
+            cursor: pointer;
+          }
+          .tips-xcx:hover + .max-tips-xcx {
+            display: block;
+          }
+          .max-tips-xcx {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            z-index: 1;
+            right: -50px;
+            top: 60px;
+            display: none;
+          }
+        }
+      }
+      .header-right:hover .right-outLogin  {
+        display: block;
+      }
+      .header-right {
+        width: auto;
+        position: relative;
+        height: 75px;
+        cursor: pointer;
+        @include flex-center();
+        .right-head {
+          height: 32px;
+          border-radius: 50px;
+          width: 32px;
+        }
+        .right-name {
+          color: #222;
+          font-size: 14px;
+          margin-left: 10px;
+          cursor: pointer;
+        }
+        .right-outLogin {
+          display: none;
+          position: absolute;
+          width: 120px;
+          color: $color-white;
+          z-index: 1;
+          right: -30px;
+          top: 75px;
+          font-size: 14px;
+          background: $color-nine;
+          text-align: center;
+          line-height: 38px;
+        }
+      }
+    }
+  }
+}

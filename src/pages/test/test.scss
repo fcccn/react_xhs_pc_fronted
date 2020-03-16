@@ -1,0 +1,183 @@
+@import '../../static/style/custom.scss';
+.test {
+  width: 100%;
+  height: auto;
+  background: $color-bgm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 38px;
+  .login-load {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+  }
+  .test-header {
+    margin-top: 32px;
+    width: 1200px;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0 119px;
+    box-sizing: border-box;
+    img {
+      width: 203px;
+      height: auto;
+    }
+    .header-center {
+      width: auto;
+      margin-top :13px;
+      color: $white;
+      text-align: center;
+      font-family: Adobe Heiti Std;
+      font-weight: normal;
+      .center-title {
+        line-height: 39px;
+        font-size: 42px;
+        letter-spacing: 3px;
+      }
+      .center-tips {
+        font-size: 23px;
+        line-height: 23px;
+        margin-top: 20px;
+        letter-spacing: 1px;
+      }
+    }
+  }
+  .test-menu {
+    width: 1200px;
+    height: auto;
+    .menu-list {
+      margin-left: 4px;
+      width: 1192px;
+      height: 58px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 45px;
+      .menu:last-child {
+        border-right: 1px solid $color-blue;
+      }
+      .menu {
+        font-size: 23px;
+        width: 238px;
+        box-sizing: border-box;
+        line-height: 56px;
+        border: 1px solid $color-blue;
+        text-align: center;
+        border-right: none;
+        color: $color-blue;
+        font-family: Adobe Heiti Std;
+        cursor: pointer;
+        &.select{
+          width: 239px;
+          font-family: FZLTHK;
+          line-height: 58px;
+          border: none;
+          color: $white;
+          background-color: $color-blue;
+        }
+      }
+    }
+    .menu-introduce {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 21px;
+      min-height: 409px;
+      .introduce:nth-child(4n) {
+        margin-right: 0;
+      }
+      .introduce {
+        width: 283px;
+        background: rgba(252,107,87,1);
+        border-radius: 10px;
+        font-size: 0;
+        padding: 8px 10px 15px 9px;
+        box-sizing: border-box;
+        margin-right: 22px;
+        img {
+          width: 264px;
+          height: 161px;
+          border-radius: 10px;
+        }
+        .introduce-text {
+          margin-top: 19px;
+          width: 264px;
+          padding-left: 8px;
+          color: $white;
+          box-sizing: border-box;
+          .introduce-title {
+            text-align: left;
+            font-size: 20px;
+            font-family: Adobe Heiti Std;
+            font-weight: normal;
+          }
+          .introduce-teacher {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-top: 11px;
+            text-align: left;
+            font-family: Microsoft YaHei;
+            font-weight: 400;
+          }
+          .introduce-details {
+            margin-top: 17px;
+            font-size: 15px;
+            width: 234px;
+            text-align: left;
+            line-height: 23px;
+            font-family: Adobe Heiti Std;
+            font-weight: normal;
+          }
+          .introduce-btn {
+            cursor: pointer;
+            width: 215px;
+            margin-left: 18px;
+            height: 47px;
+            background-color: $white;
+            font-size: 22px;
+            color: #6B5BFF;
+            outline :none;
+            border: none;
+            margin-top: 24px;
+            font-family: Microsoft YaHei;
+            font-weight: 400;
+            border-radius: 10px;
+          }
+        }
+      }
+      .introduce:nth-child(n) {
+        margin-top: 50px;
+      }
+      .introduce:first-child {
+        background-color: #FC6B57 !important;
+        margin-top: 0;
+      }
+      .introduce:nth-child(2) {
+        margin-top: 0;
+      }
+      .introduce:nth-child(4) {
+        margin-top: 0;
+      }
+      .introduce:nth-child(2n) {
+        background-color: #54A5FF;
+      }
+      .introduce:nth-child(3) {
+        background-color: #4678FD;
+        margin-top: 0;
+      }
+      .introduce:nth-child(3n + 1) {
+        background-color: #4678FD;
+      }
+      .introduce:nth-child(4n) {
+        background-color: #5C4BFC;
+      }
+    }
+  }
+}

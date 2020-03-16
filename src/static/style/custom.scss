@@ -1,0 +1,85 @@
+@import './variables.scss';
+@mixin textColor($color: #333333) {
+  color: $color;
+}
+/*
+*  1、margin-top, margin-bottom, margin-left, margin-right
+*  2、padding-top, padding-bottom, padding-left, padding-right
+*/
+@for $i from 1 through 6 {
+  // margin
+  .mgt-#{$i * 5} { 
+    margin-top: 5px * $i; 
+  }
+  .mgb-#{$i * 5} { 
+    margin-bottom: 5px * $i; 
+  }
+  .mgl-#{$i * 5} { 
+    margin-left: 5px * $i; 
+  }
+  .mgr-#{$i * 5} { 
+    margin-right: 5px * $i; 
+  }
+  // padding
+  .pdt-#{$i * 5} { 
+    padding-top: 5px * $i; 
+  }
+  .pdb-#{$i * 5} { 
+    padding-bottom: 5px * $i; 
+  }
+  .pdl-#{$i * 5} { 
+    padding-left: 5px * $i; 
+  }
+  .pdr-#{$i * 5} { 
+    padding-right: 5px * $i; 
+  }
+}
+/**
+ *  默认flex样式水平，垂直居中
+ *	1、$flex-wrap: null -- 清空所有对齐样式
+ *	2、$direction: row -- 水平排/垂直排
+ *	3、$justify: center -- 水平方向居中
+ *	4、$align: center -- 垂直方向居中
+ */
+ @mixin flex-center($direction: row, $justify: center, $align: center, $flex-wrap: null) {
+  display: flex;
+  @if ($flex-wrap != null) {
+    flex-wrap: $flex-wrap;
+  }
+  @if ($direction != null) {
+    flex-direction: $direction;
+  }
+  @if ($justify != null) {
+    justify-content: $justify;
+  }
+  @if ($align != null) {
+    align-items: $align;
+  }
+}
+
+/*绝对定位  参数顺序：上右下左*/
+@mixin positionAbsolute($top: null, $right: null, $bottom: null, $left: null) {
+  position: absolute;
+  @if ($left != "" && $left != null) {
+    left: $left;
+  }
+  @if ($right != "" && $right != null) {
+    right: $right;
+  }
+  @if ($top != "" && $top != null) {
+    top: $top;
+  }
+  @if ($bottom != "" && $bottom != null) {
+    bottom: $bottom;
+  }
+}
+/*文本格式化，超出范围，显示省略号*/
+@mixin text-overflow($width:100%, $line:1) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  width: $width;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+}
