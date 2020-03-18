@@ -26,24 +26,40 @@ export function ChunZhiUserSmsCodeCreate (data) {
   })
 }
 
-// 春知-用户-滚动栏
-export function ChunZhiUserBannerList (data) {
+// 春知-大数据-单品牌投放-品牌列表
+export function ChunZhiBigDataXhsBrandList () {
   return axios({
     method: 'POST',
     timeout: TIMEOUT,
-    url: `${SERVER_URL}/chunzhi_user_banner_list/`,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_brand_list/`,
     responseType: 'json',
     contentType: 'application/json',
-    data: JSON.stringify(data)
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
   })
 }
 
-// 春知-用户-详情
-export function ChunZhiUserInfo () {
+// 春知-大数据-多品牌投放-柱状图
+export function XhsEchartsColumnMultiple () {
   return axios({
     method: 'POST',
     timeout: TIMEOUT,
-    url: `${SERVER_URL}/chunzhi_user_info/`,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_echarts_column_multiple/`,
+    responseType: 'json',
+    contentType: 'application/json',
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
+  })
+}
+
+//
+export function XhsEchartsLineMultiple () {
+  return axios({
+    method: 'POST',
+    timeout: TIMEOUT,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_echarts_line_multiple/`,
     responseType: 'json',
     contentType: 'application/json',
     headers: {

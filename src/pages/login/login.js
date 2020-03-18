@@ -3,7 +3,6 @@ import './login.scss'
 import brand_login_icon from '../../static/images/brand_login_icon.png';
 import { ChunZhiUserPhoneLogin, ChunZhiUserSmsCodeCreate } from '../../api/xhs_request'
 import { message, Spin } from 'antd';
-import 'antd/dist/antd.css';
 import { setCookies } from '../../static/js/cookie-util'
 class Login extends Component{
     constructor(props) {
@@ -79,7 +78,7 @@ class Login extends Component{
                 console.dir(result)
                 xkKocObj.xhs_token = result.token
                 setCookies(xkKocObj)
-                this.props.history.push('/text')
+                this.props.history.replace('/')
             }
         }).catch((err) => {
             this.setState({

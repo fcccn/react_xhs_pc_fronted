@@ -106,4 +106,123 @@
       }
     }
   }
+  .index-container {
+    @include flex-center($align: null);
+    margin: 90px auto 0;
+    background-color: $color-bgm;
+    width: 1200px;
+    .container {
+      min-height: 200px;
+      margin-right: 28px;
+      height: auto;
+      width: 240px;
+      .container-brand {
+        min-height: 200px;
+        margin-right: 28px;
+        height: auto;
+        width: 240px;
+        background-color: $color-white;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        &.select {
+          background: $color-brand;
+          border: 2px solid $color-blue;
+        }
+        .brand-child {
+          width: 100%;
+          cursor: pointer;
+          height: auto;
+          box-sizing: border-box;
+          padding: 15px 15px 30px 15px;
+          .child-header {
+            height: 50px;
+            @include flex-center($align: null, $justify: null);
+            .head-img {
+              height: 50px;
+              width: 50px;
+              border-radius: 50%;
+            }
+            .head-info {
+              margin-left: 10px;
+              color: #858faa;
+              font-size: 12px;
+              .info-name {
+                line-height: 24px;
+                margin-top: 3px;
+                margin-bottom: 4px;
+                font-size: 18px;
+                color: $color-one;
+                &.name-select {
+                  color: $color-blue;
+                }
+              }
+              .info-tips {
+                font-family: MicrosoftYaHei;
+                font-weight: 400;
+                line-height: 16px;
+              }
+            }
+          }
+          .data-text {
+            margin-top: 31px;
+            height: 16px;
+            font-size: 12px;
+            color: $color-title;
+          }
+          .data {
+            color: $color-one;
+            font-family: MicrosoftYaHei;
+            line-height: 16px;
+            margin-top: 10px;
+            font-size: 12px;
+          }
+          .number {
+            margin-top: 30px;
+            @include flex-center($align: null, $justify: null, $flex-wrap: wrap);
+            .number-item {
+              width: 50%;
+              height: 50px;
+              @include flex-center($justify: space-around, $direction: column, $align: null);
+              .number-title {
+                font-size: 12px;
+                color: $color-title;
+                font-family: MicrosoftYaHei;
+                line-height:16px
+              }
+              .number-text {
+                font-size: 18px;
+                line-height: 24px;
+                letter-spacing: 1px;
+                font-family: MicrosoftYaHei-Bold,MicrosoftYaHei;
+                color: $color-one;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+    .container-chart {
+      width: calc(100% - 268px);
+      margin-top: 7px;
+      .chart-click {
+        @include flex-center();
+        margin-bottom: 42px;
+        .click-item {
+          width: auto;
+          line-height: 30px;
+          margin-right: 40px;
+          font-size: 12px;
+          cursor: pointer;
+          color: $color-six;
+          &.clickSelect {
+            border-bottom: 3px solid $color-blue;
+            font-weight: 700;
+            color: $color-blue;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
 }

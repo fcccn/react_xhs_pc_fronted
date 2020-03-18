@@ -1,0 +1,23 @@
+@import '../../static/style/custom.scss';
+.chart-list {
+  background: $color-bgm;
+  margin-bottom: 10px;
+  width: 100%;
+  .list-double {
+    @include flex-center();
+    margin-bottom: 40px;
+    .double {
+      width: calc(50% - 14px);
+    }
+    .double-left {
+      margin-right: 14px;
+    }
+    .double-right {
+      margin-left: 14px;
+    }
+  }
+  .list-chart {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}
