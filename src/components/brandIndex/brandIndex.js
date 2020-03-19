@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Chart from '../../components/chart/chart'
+import Chart from '../chart/chart'
 import './brandIndex.scss'
 import {barOption, fansBarOption, kolBarOption, lineKolOption, rightBarOption, lineNoteOption} from "../../static/js/echartData";
 import {XhsEchartsColumnMultiple, XhsEchartsLineMultiple} from "../../api/xhs_request";
@@ -125,7 +125,7 @@ class BrandIndex extends Component{
             console.log(err)
         })
     }
-    componentWillMount() {
+    componentDidMount() {
         this._XhsEchartsLineMultiple()
         this._XhsEchartsColumnMultiple()
     }

@@ -1,0 +1,32 @@
+@import '../../static/style/custom';
+.number-list {
+  width: 100%;
+  @include flex-center($justify: null, $align: null, $flex-wrap: wrap);
+  .number {
+    width: 222px;
+    height: 100px;
+    text-align: center;
+    background-color: $color-white;
+    border-radius: 12px;
+    @include flex-center($direction: column, $align: null);
+    margin-right: 10px;
+    margin-bottom: 15px;
+    .number-name {
+      font-size: 24px;
+      color: $color-blue;
+      line-height: 31px;
+      letter-spacing: 1px;
+      font-family: MicrosoftYaHei;
+    }
+    .number-tips {
+      margin-top: 5px;
+      font-size: 12px;
+      font-weight: inherit;
+      color: $color-title;
+    }
+  }
+  .number:nth-child(4n) {
+    margin-right: 0;
+  }
+}
+

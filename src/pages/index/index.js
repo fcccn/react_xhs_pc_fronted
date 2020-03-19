@@ -6,8 +6,10 @@ import xcx from '../../static/images/xcx_chuzhi_icon.png';
 import head from '../../static/images/brand_head_icon.png';
 import { clearCookies } from '../../static/js/cookie-util'
 import { Spin } from 'antd';
-import BrandIndex from "../brandIndex/brandIndex";
-import ResultIndex from '../resultIndex/resultIndex';
+import BrandIndex from "../../components/brandIndex/brandIndex";
+import ResultIndex from '../../components/resultIndex/resultIndex';
+import store from '../../store';
+import { BRAND } from '../../store/actionTypes'
 class Index extends Component{
     constructor(props) {
         super(props);
@@ -18,7 +20,8 @@ class Index extends Component{
             getClickIndex: 0,
             chartHeadArray: ['品牌对比', '效果分析', '达人分析', '笔记分析'],
             barObject: {},
-            lineObject: {}
+            lineObject: {},
+            keyword: ''
         }
     }
     render() {
@@ -56,7 +59,7 @@ class Index extends Component{
                     <div className="container">
                         {
                             this.state.brandArray.map((item, index) => {
-                                return <div className={`container-brand ${index === this.state.getIndex ? 'select' : null}`} key={index} onClick={this.clickBrand.bind(this, index)}>
+                                return <div className={`container-brand ${index === this.state.getIndex ? 'select' : null}`} key={index} onClick={this.clickBrand.bind(this, index, item.keyword)}>
                                     <div className="brand-child">
                                         <div className="child-header">
                                             <img src={item.image} className="head-img" alt=""/>
@@ -115,6 +118,14 @@ class Index extends Component{
                     brandArray: data.result,
                     showLoad: false
                 })
+                this.setState({
+                    keyword: data.result[0].keyword
+                })
+                const action = {
+                    type: BRAND,
+                    value: data.result[0].keyword
+                }
+                store.dispatch(action)
             }
         }).catch((err) => {
             console.log(err)
@@ -124,12 +135,11 @@ class Index extends Component{
         })
     }
     showMain() {
-        console.log('111' + this.state.getClickIndex)
         switch (this.state.getClickIndex) {
             case 0:
                 return <BrandIndex />
             case 1:
-                return <ResultIndex />
+                return <ResultIndex onRef={this.onRef} keyword={this.state.keyword}/>
             case 2:
                 return <div>待完成 {this.state.getClickIndex}</div>
             case 3:
@@ -137,6 +147,9 @@ class Index extends Component{
             default:
                 break;
         }
+    }
+    onRef = (ref) => {
+        this.ResultIndex = ref
     }
     clickChart(index) {
         this.setState({
@@ -148,10 +161,19 @@ class Index extends Component{
         clearCookies()
         this.props.history.replace('/login')
     }
-    clickBrand(index) {
+    clickBrand(index, keyword) {
         this.setState({
             getIndex: index
         })
+        const action = {
+            type: BRAND,
+            value: keyword
+        }
+        store.dispatch(action)
+        if (this.state.getClickIndex === 1) {
+            this.ResultIndex._XhsEchartsGuide(keyword)
+            this.ResultIndex._XhsEchartsLine(keyword)
+        }
     }
     componentDidMount() {
         this._ChunZhiBigDataXhsBrandList()

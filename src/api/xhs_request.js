@@ -54,7 +54,7 @@ export function XhsEchartsColumnMultiple () {
   })
 }
 
-//
+// 春知-大数据-多品牌投放-折线图
 export function XhsEchartsLineMultiple () {
   return axios({
     method: 'POST',
@@ -62,6 +62,36 @@ export function XhsEchartsLineMultiple () {
     url: `${SERVER_URL}/chunzhi_bigdata_xhs_echarts_line_multiple/`,
     responseType: 'json',
     contentType: 'application/json',
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
+  })
+}
+
+// 春知-大数据-单品牌投放-数据概览
+export function XhsEchartsGuide (data) {
+  return axios({
+    method: 'POST',
+    timeout: TIMEOUT,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_echarts_guide/`,
+    responseType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
+  })
+}
+
+// 春知-大数据-单品牌投放-折线图
+export function XhsEchartsLine (data) {
+  return axios({
+    method: 'POST',
+    timeout: TIMEOUT,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_echarts_line/`,
+    responseType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
     headers: {
       'Authorization': Cookies.get(XHS_TOKEN)
     }

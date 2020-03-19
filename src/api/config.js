@@ -6,11 +6,11 @@ const env = process.env.NODE_ENV || 'production'
 
 let VERSION_URL = ''
 if (env === 'development') {
-  VERSION_URL = 'https://app.xiongfenxiang.com/api/v2/chunzhi/'
+  VERSION_URL = 'https://app.xiongfenxiang.com/api/v2/chunzhi'
 } else if (env === 'staging') {
-  VERSION_URL = 'https://app.xiongfenxiang.com/api/v2/chunzhi/'
+  VERSION_URL = 'https://app.xiongfenxiang.com/api/v2/chunzhi'
 } else if (env === 'production') {
-  VERSION_URL = 'https://app.xiongfenxiang.com/api/v2/chunzhi/'
+  VERSION_URL = 'https://app.xiongfenxiang.com/api/v2/chunzhi'
 }
 
 export const SERVER_URL = VERSION_URL
