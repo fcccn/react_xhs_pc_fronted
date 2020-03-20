@@ -4,7 +4,7 @@ import { XhsEchartsGuide, XhsEchartsLine, XhsEchartsClouds } from '../../api/xhs
 import store from '../../store';
 // import { figureChange } from '../../static/js/global'
 import Chart from '../chart/chart'
-import { lineResultNoteOption, lineInfluenceNoteOption, noteDiscussOption, worldCommentOption } from '../../static/js/echartData'
+import { lineResultNoteOption, lineInfluenceNoteOption, noteDiscussOption, worldCommentOption, noteTitleOption, worldTitleOption } from '../../static/js/echartData'
 class ResultIndex extends Component{
     constructor(props) {
         super(props);
@@ -72,13 +72,27 @@ class ResultIndex extends Component{
                     <div className="double-charts">
                         <div className="double-head">笔记评论Top10</div>
                         <div className="double-chart">
-                            <Chart barOption={noteDiscussOption} id={'noteDiscuss'}/>
+                            <Chart barOption={noteDiscussOption} id={'noteDiscuss'} height={'340px'}/>
                         </div>
                     </div>
                     <div className="double-word">
-                        <div className="double-head">效果数据概览</div>
+                        <div className="double-head">笔记标题词云</div>
                         <div className="double-chart">
-                            <Chart barOption={worldCommentOption} id={'worldComment'}/>
+                            <Chart barOption={worldCommentOption} id={'worldComment'} height={'340px'}/>
+                        </div>
+                    </div>
+                </div>
+                <div className="list-double">
+                    <div className="double-charts">
+                        <div className="double-head">笔记标题Top10</div>
+                        <div className="double-chart">
+                            <Chart barOption={noteTitleOption} id={'noteTitle'} height={'340px'}/>
+                        </div>
+                    </div>
+                    <div className="double-word">
+                        <div className="double-head">笔记内容词云</div>
+                        <div className="double-chart">
+                            <Chart barOption={worldTitleOption} id={'worldTitle'} height={'340px'}/>
                         </div>
                     </div>
                 </div>
@@ -143,6 +157,9 @@ class ResultIndex extends Component{
         XhsEchartsClouds({'keyword': keyword}).then((res) => {
             let data = res.data
             let noteCommentsObj = {}
+            let worldComment = []
+            let noteTitleObj = {}
+            let worldTitle = []
             if (data.error === 0) {
                 // 笔记评论Top10
                 noteCommentsObj = data.result[0].note_comments_keywords
@@ -152,18 +169,33 @@ class ResultIndex extends Component{
                 noteDiscussOption.xAxis[0].data = x_names[0]
                 noteDiscussOption.series[0].name = noteCommentsObj.y_names
                 noteDiscussOption.series[0].data = y_vales[0]
-
                 // 笔记评论词云
-                let worldComment = []
-                noteCommentsObj.x_names.forEach((item) => {
-                    let worldXNamesObj = {
-                        text: item,
-                        value: Math.floor(Math.random() * (50 - 10 + 1)) + 10
+                worldComment = x_names[0].map((item, index) => {
+                    return {
+                        name: item,
+                        value: noteCommentsObj.y_vales[0][index]
                     }
-                    worldComment.push(worldXNamesObj)
                 })
                 worldCommentOption.series[0].data = worldComment
-                console.log(worldCommentOption)
+
+                // 笔记标题Top10
+                noteTitleObj = data.result[0].note_title_keywords
+                let title_x_names = this.group(noteTitleObj.x_names, 10)
+                let title_y_vales = this.group(noteTitleObj.y_vales[0], 10)
+                noteTitleOption.legend.data = noteTitleObj.y_names
+                noteTitleOption.xAxis[0].data = title_x_names[0]
+                noteTitleOption.series[0].name = noteTitleObj.y_names
+                noteTitleOption.series[0].data = title_y_vales[0]
+                console.log(noteTitleOption)
+                // 笔记评论词云
+                worldTitle = noteTitleObj.x_names.map((item, index) => {
+                    return {
+                        name: item,
+                        value: noteTitleObj.y_vales[0][index]
+                    }
+                })
+                console.log(worldTitle)
+                worldTitleOption.series[0].data = worldTitle
             }
         }).catch((err) => {
             console.log(err)

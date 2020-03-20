@@ -8,6 +8,7 @@ import { clearCookies } from '../../static/js/cookie-util'
 import { Spin } from 'antd';
 import BrandIndex from "../../components/brandIndex/brandIndex";
 import ResultIndex from '../../components/resultIndex/resultIndex';
+import KolIndex from "../../components/kolIndex/kolIndex";
 import store from '../../store';
 import { BRAND } from '../../store/actionTypes'
 class Index extends Component{
@@ -141,7 +142,7 @@ class Index extends Component{
             case 1:
                 return <ResultIndex onRef={this.onRef} keyword={this.state.keyword}/>
             case 2:
-                return <div>待完成 {this.state.getClickIndex}</div>
+                return <KolIndex onRef={this.onRef} keyword={this.state.keyword}/>
             case 3:
                 return <div>待完成 {this.state.getClickIndex}</div>
             default:
@@ -174,6 +175,8 @@ class Index extends Component{
             this.ResultIndex._XhsEchartsGuide(keyword)
             this.ResultIndex._XhsEchartsLine(keyword)
             this.ResultIndex._XhsEchartsClouds(keyword)
+        } else if (this.state.getClickIndex === 2) {
+            this.ResultIndex._XhsEchartsLine(keyword)
         }
     }
     componentDidMount() {
