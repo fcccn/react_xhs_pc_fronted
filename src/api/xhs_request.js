@@ -98,6 +98,21 @@ export function XhsEchartsLine (data) {
   })
 }
 
+// 春知-大数据-单品牌投放-词云图
+export function XhsEchartsClouds (data) {
+  return axios({
+    method: 'POST',
+    timeout: TIMEOUT,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_echarts_clouds/`,
+    responseType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
+  })
+}
+
 // 博彦页面测试hi
 export function BoYanTest () {
   return axios({

@@ -173,6 +173,7 @@ class Index extends Component{
         if (this.state.getClickIndex === 1) {
             this.ResultIndex._XhsEchartsGuide(keyword)
             this.ResultIndex._XhsEchartsLine(keyword)
+            this.ResultIndex._XhsEchartsClouds(keyword)
         }
     }
     componentDidMount() {

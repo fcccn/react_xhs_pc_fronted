@@ -223,6 +223,12 @@
           }
         }
       }
+      .clickTabNone {
+        display: none;
+        &.clickTabShow {
+          display: block;
+        }
+      }
     }
   }
 }

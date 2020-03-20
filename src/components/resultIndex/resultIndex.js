@@ -1,20 +1,20 @@
 import React, {Component} from 'react'
 import './resultIndex.scss'
-import { XhsEchartsGuide, XhsEchartsLine } from '../../api/xhs_request'
+import { XhsEchartsGuide, XhsEchartsLine, XhsEchartsClouds } from '../../api/xhs_request'
 import store from '../../store';
 // import { figureChange } from '../../static/js/global'
 import Chart from '../chart/chart'
-import {lineResultNoteOption} from '../../static/js/echartData'
+import { lineResultNoteOption, lineInfluenceNoteOption, noteDiscussOption, worldCommentOption } from '../../static/js/echartData'
 class ResultIndex extends Component{
     constructor(props) {
         super(props);
         store.subscribe(this.storeChange)
         this.state = {
-            dataResultObj: {},
-            lineDataRelationObj: {}
+            dataResultObj: {}
         }
         this._XhsEchartsGuide(props.keyword)
         this._XhsEchartsLine(props.keyword)
+        this._XhsEchartsClouds(props.keyword)
     }
     render() {
         return (
@@ -62,17 +62,23 @@ class ResultIndex extends Component{
                         <Chart barOption={lineResultNoteOption} id={'lineResultNote'}/>
                     </div>
                 </div>
+                <div className="list-chart">
+                    <div className="double-head">笔记影响力趋势</div>
+                    <div className="double-chart">
+                        <Chart barOption={lineInfluenceNoteOption} id={'lineInfluenceNote'}/>
+                    </div>
+                </div>
                 <div className="list-double">
-                    <div className="double-left double">
-                        <div className="double-head">效果数据概览</div>
+                    <div className="double-charts">
+                        <div className="double-head">笔记评论Top10</div>
                         <div className="double-chart">
-                            测试1
+                            <Chart barOption={noteDiscussOption} id={'noteDiscuss'}/>
                         </div>
                     </div>
-                    <div className="double-right double">
+                    <div className="double-word">
                         <div className="double-head">效果数据概览</div>
                         <div className="double-chart">
-                            测试2
+                            <Chart barOption={worldCommentOption} id={'worldComment'}/>
                         </div>
                     </div>
                 </div>
@@ -95,40 +101,69 @@ class ResultIndex extends Component{
         })
     }
     _XhsEchartsLine(keyword) {
+        let dataObj = {}
+        let lineDataRelationObj = {}
+        let lineInfluenceNoteObj = {}
         XhsEchartsLine({'keyword': keyword}).then((res) => {
             let data = res.data
-            let dataObj = {}
-            this.setState({
-                lineDataRelationObj: {}
-            })
             if (data.error === 0) {
                 dataObj = data.result
-                // let y_vales = []
-                // dataObj.y_vales.forEach((item) => {
-                //     y_vales.push(this.groupSplit(item))
-                // })
-                // console.log(y_vales)
                 let groupedYNameArray = this.group(dataObj.y_names, 3)
                 let groupedValueArray = this.group(dataObj.y_vales, 3)
-                let newArray = dataObj.x_names
-                this.setState({
-                    lineDataRelationObj: {
-                        x_names: newArray,
-                        y_names: groupedYNameArray[1],
-                        y_vales: groupedValueArray[1]
-                    }
-                })
-                console.log(this.state.lineDataRelationObj)
+                lineDataRelationObj.x_names = dataObj.x_names
+                lineDataRelationObj.y_names = groupedYNameArray[1]
+                lineDataRelationObj.y_vales = groupedValueArray[1]
                 // 笔记互动量趋势
-                lineResultNoteOption.legend.data = this.state.lineDataRelationObj.y_names
-                lineResultNoteOption.xAxis[0].data = this.state.lineDataRelationObj.x_names
-                lineResultNoteOption.series[0].name = this.state.lineDataRelationObj.y_names[0]
-                lineResultNoteOption.series[1].name = this.state.lineDataRelationObj.y_names[1]
-                lineResultNoteOption.series[2].name = this.state.lineDataRelationObj.y_names[2]
-                lineResultNoteOption.series[0].data = this.state.lineDataRelationObj.y_vales[0]
-                lineResultNoteOption.series[1].data = this.state.lineDataRelationObj.y_vales[1]
-                lineResultNoteOption.series[2].data = this.state.lineDataRelationObj.y_vales[2]
-                console.log(lineResultNoteOption)
+                lineResultNoteOption.legend.data = lineDataRelationObj.y_names
+                lineResultNoteOption.xAxis[0].data = lineDataRelationObj.x_names
+                lineResultNoteOption.series[0].name = lineDataRelationObj.y_names[0]
+                lineResultNoteOption.series[1].name = lineDataRelationObj.y_names[1]
+                lineResultNoteOption.series[2].name = lineDataRelationObj.y_names[2]
+                lineResultNoteOption.series[0].data = lineDataRelationObj.y_vales[0]
+                lineResultNoteOption.series[1].data = lineDataRelationObj.y_vales[1]
+                lineResultNoteOption.series[2].data = lineDataRelationObj.y_vales[2]
+                // 笔记影响力趋势
+                lineInfluenceNoteObj.x_names = dataObj.x_names
+                lineInfluenceNoteObj.y_names = groupedYNameArray[0]
+                lineInfluenceNoteObj.y_vales = groupedValueArray[0]
+                lineInfluenceNoteOption.legend.data = lineInfluenceNoteObj.y_names
+                lineInfluenceNoteOption.xAxis[0].data = lineInfluenceNoteObj.x_names
+                lineInfluenceNoteOption.series[0].name = lineInfluenceNoteObj.y_names[0]
+                lineInfluenceNoteOption.series[1].name = lineInfluenceNoteObj.y_names[1]
+                lineInfluenceNoteOption.series[2].name = lineInfluenceNoteObj.y_names[2]
+                lineInfluenceNoteOption.series[0].data = lineInfluenceNoteObj.y_vales[0]
+                lineInfluenceNoteOption.series[1].data = lineInfluenceNoteObj.y_vales[1]
+                lineInfluenceNoteOption.series[2].data = lineInfluenceNoteObj.y_vales[2]
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+    _XhsEchartsClouds(keyword) {
+        XhsEchartsClouds({'keyword': keyword}).then((res) => {
+            let data = res.data
+            let noteCommentsObj = {}
+            if (data.error === 0) {
+                // 笔记评论Top10
+                noteCommentsObj = data.result[0].note_comments_keywords
+                let x_names = this.group(noteCommentsObj.x_names, 10)
+                let y_vales = this.group(noteCommentsObj.y_vales[0], 10)
+                noteDiscussOption.legend.data = noteCommentsObj.y_names
+                noteDiscussOption.xAxis[0].data = x_names[0]
+                noteDiscussOption.series[0].name = noteCommentsObj.y_names
+                noteDiscussOption.series[0].data = y_vales[0]
+
+                // 笔记评论词云
+                let worldComment = []
+                noteCommentsObj.x_names.forEach((item) => {
+                    let worldXNamesObj = {
+                        text: item,
+                        value: Math.floor(Math.random() * (50 - 10 + 1)) + 10
+                    }
+                    worldComment.push(worldXNamesObj)
+                })
+                worldCommentOption.series[0].data = worldComment
+                console.log(worldCommentOption)
             }
         }).catch((err) => {
             console.log(err)
