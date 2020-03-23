@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Chart from '../chart/chart'
-import './brandIndex.scss'
+import Chart from '../Chart/Chart'
+import './BrandIndex.scss'
 import {barOption, fansBarOption, kolBarOption, lineKolOption, rightBarOption, lineNoteOption} from "../../static/js/echartData";
 import {XhsEchartsColumnMultiple, XhsEchartsLineMultiple} from "../../api/xhs_request";
 class BrandIndex extends Component{

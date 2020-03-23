@@ -6,9 +6,10 @@ import xcx from '../../static/images/xcx_chuzhi_icon.png';
 import head from '../../static/images/brand_head_icon.png';
 import { clearCookies } from '../../static/js/cookie-util'
 import { Spin } from 'antd';
-import BrandIndex from "../../components/brandIndex/brandIndex";
-import ResultIndex from '../../components/resultIndex/resultIndex';
-import KolIndex from "../../components/kolIndex/kolIndex";
+import BrandIndex from "../../components/BrandIndex/BrandIndex";
+import ResultIndex from '../../components/ResultIndex/ResultIndex';
+import KolIndex from "../../components/KolIndex/KolIndex";
+import NoteIndex from "../../components/NoteIndex/NoteIndex";
 import store from '../../store';
 import { BRAND } from '../../store/actionTypes'
 class Index extends Component{
@@ -51,7 +52,7 @@ class Index extends Component{
                         </div>
                         <div className="header-right">
                             <img src={head} alt="" className="right-head"/>
-                            <div className="right-name">测试</div>
+                            <div className="right-name">春知</div>
                             <div className="right-outLogin" onClick={this.outLogin.bind(this)}>退 出 登 录</div>
                         </div>
                     </div>
@@ -144,7 +145,7 @@ class Index extends Component{
             case 2:
                 return <KolIndex onRef={this.onRef} keyword={this.state.keyword}/>
             case 3:
-                return <div>待完成 {this.state.getClickIndex}</div>
+                return <NoteIndex onRef={this.onRef} keyword={this.state.keyword}/>
             default:
                 break;
         }
@@ -164,7 +165,8 @@ class Index extends Component{
     }
     clickBrand(index, keyword) {
         this.setState({
-            getIndex: index
+            getIndex: index,
+            keyword: keyword
         })
         const action = {
             type: BRAND,
@@ -177,6 +179,16 @@ class Index extends Component{
             this.ResultIndex._XhsEchartsClouds(keyword)
         } else if (this.state.getClickIndex === 2) {
             this.ResultIndex._XhsEchartsLine(keyword)
+            this.ResultIndex._XhsEchartsColumn(keyword)
+            this.ResultIndex._XhsEchartsPie(keyword)
+            this.ResultIndex._XhsKolList(keyword)
+        } else if (this.state.getClickIndex === 3) {
+            this.ResultIndex._XhsEchartsGuide(keyword)
+            this.ResultIndex._XhsEchartsLine(keyword)
+            this.ResultIndex._XhsEchartsPie(keyword)
+            this.ResultIndex._XhsEchartsClouds(keyword)
+            this.ResultIndex._XhsEchartsColumn(keyword)
+            this.ResultIndex._XhsNotesList(keyword)
         }
     }
     componentDidMount() {

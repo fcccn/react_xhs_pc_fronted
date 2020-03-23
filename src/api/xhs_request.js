@@ -112,6 +112,64 @@ export function XhsEchartsClouds (data) {
     }
   })
 }
+// 春知-大数据-单品牌投放-柱状图
+export function XhsEchartsColumn (data) {
+  return axios({
+    method: 'POST',
+    timeout: TIMEOUT,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_echarts_column/`,
+    responseType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
+  })
+}
+
+// 春知-大数据-单品牌投放-饼状图
+export function XhsEchartsPie (data) {
+  return axios({
+    method: 'POST',
+    timeout: TIMEOUT,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_echarts_pie/`,
+    responseType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
+  })
+}
+// 春知-大数据-单品牌投放-达人列表
+export function XhsKolList (data) {
+  return axios({
+    method: 'POST',
+    timeout: TIMEOUT,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_kols_list/`,
+    responseType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
+  })
+}
+
+// 春知-大数据-单品牌投放-笔记列表
+export function XhsNotesList (data) {
+  return axios({
+    method: 'POST',
+    timeout: TIMEOUT,
+    url: `${SERVER_URL}/chunzhi_bigdata_xhs_notes_list/`,
+    responseType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    headers: {
+      'Authorization': Cookies.get(XHS_TOKEN)
+    }
+  })
+}
 
 // 博彦页面测试hi
 export function BoYanTest () {

@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import './resultIndex.scss'
+import './ResultIndex.scss'
 import { XhsEchartsGuide, XhsEchartsLine, XhsEchartsClouds } from '../../api/xhs_request'
 import store from '../../store';
 // import { figureChange } from '../../static/js/global'
-import Chart from '../chart/chart'
-import { lineResultNoteOption, lineInfluenceNoteOption, noteDiscussOption, worldCommentOption, noteTitleOption, worldTitleOption } from '../../static/js/echartData'
+import Chart from '../Chart/Chart'
+import { lineResultNoteOption, lineInfluenceNoteOption, noteDiscussOption, worldCommentOption, noteTitleOption, worldTitleOption, noteDescOption, worldDescOption } from '../../static/js/echartData'
 class ResultIndex extends Component{
     constructor(props) {
         super(props);
@@ -96,6 +96,20 @@ class ResultIndex extends Component{
                         </div>
                     </div>
                 </div>
+                <div className="list-double">
+                    <div className="double-charts">
+                        <div className="double-head">笔记内容Top10</div>
+                        <div className="double-chart">
+                            <Chart barOption={noteDescOption} id={'noteDesc'} height={'340px'}/>
+                        </div>
+                    </div>
+                    <div className="double-word">
+                        <div className="double-head">笔记内容词云</div>
+                        <div className="double-chart">
+                            <Chart barOption={worldDescOption} id={'worldDesc'} height={'340px'}/>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -160,6 +174,8 @@ class ResultIndex extends Component{
             let worldComment = []
             let noteTitleObj = {}
             let worldTitle = []
+            let noteDescObj = {}
+            let noteDesc = []
             if (data.error === 0) {
                 // 笔记评论Top10
                 noteCommentsObj = data.result[0].note_comments_keywords
@@ -186,7 +202,6 @@ class ResultIndex extends Component{
                 noteTitleOption.xAxis[0].data = title_x_names[0]
                 noteTitleOption.series[0].name = noteTitleObj.y_names
                 noteTitleOption.series[0].data = title_y_vales[0]
-                console.log(noteTitleOption)
                 // 笔记评论词云
                 worldTitle = noteTitleObj.x_names.map((item, index) => {
                     return {
@@ -194,8 +209,23 @@ class ResultIndex extends Component{
                         value: noteTitleObj.y_vales[0][index]
                     }
                 })
-                console.log(worldTitle)
                 worldTitleOption.series[0].data = worldTitle
+                //  笔记内容Top10
+                noteDescObj = data.result[0].note_desc_keywords
+                let desc_x_names = this.group(noteDescObj.x_names, 10)
+                let desc_y_vales = this.group(noteDescObj.y_vales[0], 10)
+                noteDescOption.legend.data = noteDescObj.y_names
+                noteDescOption.xAxis[0].data = desc_x_names[0]
+                noteDescOption.series[0].name = noteDescObj.y_names
+                noteDescOption.series[0].data = desc_y_vales[0]
+                // 笔记内容词云
+                noteDesc = noteDescObj.x_names.map((item, index) => {
+                    return {
+                        name: item,
+                        value: noteDescObj.y_vales[0][index]
+                    }
+                })
+                worldDescOption.series[0].data = noteDesc
             }
         }).catch((err) => {
             console.log(err)

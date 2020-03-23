@@ -1,0 +1,122 @@
+@import '../../static/style/custom';
+.table-info {
+  width: 100%;
+  height: auto;
+  .info-title {
+    font-size: 16px;
+    color: #111111;
+    line-height: 20px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    font-family: MicrosoftYaHei;
+  }
+  .kol-container {
+    @include flex-center($justify: flex-start, $align: null);
+    margin: 15px 0;
+    font-size: 12px;
+    .container-btn {
+      line-height: 22px;
+      margin-right: 48px;
+      cursor: pointer;
+      font-family: MicrosoftYaHei, serif;
+      color: $color-title;
+      &.select {
+        color: $color-blue;
+        border-bottom: 2px solid $color-blue;
+      }
+    }
+  }
+  .list-table {
+    padding: 15px 20px 28px 20px;
+    border-radius: 12px;
+    background-color: $color-white;
+    .table-header {
+      @include flex-center($justify: flex-start, $align: null);
+      background-color: $color-brand;
+      line-height: 35px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      .header-details {
+        width: 25%;
+        font-size: 12px;
+        display: flex;
+        justify-content: flex-end;
+        .details {
+          width: 80px;
+          text-align: center;
+        }
+      }
+      .header-details:first-child {
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+    .list {
+      width: 100%;
+      height: auto;
+      .list-item {
+        cursor: pointer;
+        height: 78px;
+        margin-top: 0;
+        border-bottom: 1px solid $color-e;
+        background-color: $color-white;
+        box-sizing: border-box;
+        padding: 0 0 0 20px;
+        @include flex-center($justify: flex-start, $align: center);
+        .item-info {
+          width: 25%;
+          @include flex-center($justify: flex-start, $align: null);
+        }
+        .item-user {
+          height: 48px;
+          box-sizing: border-box;
+          text-align: right;
+          .user_img {
+            border-radius: 50%;
+            height: 48px;
+            width: 48px;
+            object-fit: cover;
+          }
+          .user-data {
+            margin-left: 12px;
+            align-content: space-between;
+            @include flex-center($direction: column, $align: null);
+            font-size: 12px;
+            color: $color-title;
+            .data-name {
+              width: 210px;
+              height: 28px;
+              color: $color-black;
+              margin-bottom: 2px;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              word-break: break-all;
+            }
+          }
+        }
+        .item-user:first-child {
+          text-align: left;
+        }
+        .item-common {
+          width: 25%;
+          font-size: 12px;
+          line-height: 48px;
+          display: flex;
+          justify-content: flex-end;
+          .item-center {
+            width: 80px;
+            text-align: center;
+          }
+        }
+      }
+      .list-pagination {
+        width: 100%;
+        height: auto;
+        padding-top: 28px;
+        @include flex-center();
+      }
+    }
+  }
+}
+

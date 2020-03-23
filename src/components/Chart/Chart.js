@@ -14,7 +14,14 @@ class Chart extends Component {
     }
     init() {
         let chart = echarts.init(document.getElementById(this.props.id))
+        chart.showLoading({
+            text: 'loading',
+            color: '#396AF2',
+            textColor: '#396AF2',
+            maskColor: 'rgba(255, 255, 255, 0.2)'
+        })
         setTimeout(() => {
+            chart.hideLoading()
             chart.setOption(this.props.barOption)
         }, 200)
     }

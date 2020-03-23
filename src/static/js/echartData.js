@@ -805,6 +805,95 @@ export const worldTitleOption = {
     ]
 }
 
+// 笔记内容Top10
+export const noteDescOption = {
+    legend: {
+        data: [],
+        icon: 'circle',   //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+        itemWidth: 15,  // 设置宽度
+        itemHeight: 15, // 设置高度
+        itemGap: 20 // 设置间距
+    },
+    calculable: true,
+    tooltip: {                                      //提示框组件
+        trigger: 'axis'                             //触发类型,'item'数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。 'axis'坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: []
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            splitLine: {
+                lineStyle:{
+                    type:'dashed'    //设置网格线类型 dotted：虚线   solid:实线
+                }
+            },
+            axisLine:{ //y轴
+                show:false
+            }
+        },
+    ],
+    series: [
+        {
+            name: '',
+            type: 'bar',
+            barWidth : 25,
+            itemStyle: {    //柱状颜色和圆角
+                color: '#396AF2'
+            },
+            data: []
+        }
+    ],
+    grid: {
+        x: 40,   //左侧与y轴的距离
+        y: 35,   //top部与x轴的距离
+        x2: 40,   //右侧与y轴的距离
+        y2: 30    //bottom部与x轴的距离
+    }
+};
+
+// 笔记标题词云
+export const worldDescOption = {
+    // 产生随机颜色值
+    textStyle: {
+        normal: {
+            fontFamily: 'sans-serif',
+            fontWeight: 'bold',
+            // Color can be a callback function or a color string
+            color: () => {
+                // Random color
+                return colors[parseInt(Math.random() * 7)]
+            }
+        },
+        emphasis: {
+            shadowBlur: 10,
+            shadowColor: '#333'
+        }
+    },
+    tooltip: {
+        formatter: function (params) {
+            return params.marker + params.name + '：' + params.value
+        }
+    },
+    series: [
+        {
+            name: '词频数',
+            type: 'wordCloud',
+            textPadding: 0,
+            size: ['100%', '100%'],
+            autoSize: {
+                enable: true,
+                minSize: 12
+            },
+            data: []
+        }
+    ]
+}
+
 // 达人分析
 // 折线图 达人数量走势
 export const lineKolNumberOption = {
@@ -864,6 +953,368 @@ export const lineKolNumberOption = {
     ],
     grid: {
         x: 50,   //左侧与y轴的距离
+        y: 35,   //top部与x轴的距离
+        x2: 40,   //右侧与y轴的距离
+        y2: 30    //bottom部与x轴的距离
+    }
+}
+
+// 达人粉丝数分布
+export const kolFansOption = {
+    legend: {
+        data: [],
+        icon: 'circle',   //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+        itemWidth: 15,  // 设置宽度
+        itemHeight: 15, // 设置高度
+        itemGap: 20 // 设置间距
+    },
+    calculable: true,
+    tooltip: {                                      //提示框组件
+        trigger: 'axis'                             //触发类型,'item'数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。 'axis'坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: []
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            splitLine: {
+                lineStyle:{
+                    type:'dashed'    //设置网格线类型 dotted：虚线   solid:实线
+                }
+            },
+            axisLine:{ //y轴
+                show:false
+            }
+        },
+    ],
+    series: [
+        {
+            name: '',
+            type: 'bar',
+            barWidth : 25,
+            itemStyle: {    //柱状颜色和圆角
+                color: '#396AF2'
+            },
+            data: []
+        }
+    ],
+    grid: {
+        x: 40,   //左侧与y轴的距离
+        y: 35,   //top部与x轴的距离
+        x2: 40,   //右侧与y轴的距离
+        y2: 30    //bottom部与x轴的距离
+    }
+};
+
+// 达人薯种分布
+export const kolLevelOption = {
+    legend: {
+        data: [],
+        icon: 'circle',   //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+        itemWidth: 15,  // 设置宽度
+        itemHeight: 15, // 设置高度
+        itemGap: 20 // 设置间距
+    },
+    calculable: true,
+    tooltip: {                                      //提示框组件
+        trigger: 'axis'                             //触发类型,'item'数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。 'axis'坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: []
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            splitLine: {
+                lineStyle:{
+                    type:'dashed'    //设置网格线类型 dotted：虚线   solid:实线
+                }
+            },
+            axisLine:{ //y轴
+                show:false
+            }
+        },
+    ],
+    series: [
+        {
+            name: '',
+            type: 'bar',
+            barWidth : 25,
+            itemStyle: {    //柱状颜色和圆角
+                color: '#396AF2'
+            },
+            data: []
+        }
+    ],
+    grid: {
+        x: 40,   //左侧与y轴的距离
+        y: 35,   //top部与x轴的距离
+        x2: 40,   //右侧与y轴的距离
+        y2: 30    //bottom部与x轴的距离
+    }
+};
+
+// 达人合作类型 note_cooperate
+export const PieNoteCooperateOption = {
+    color:['#396AF2', '#F5A20A'],
+    tooltip: {
+        trigger: 'item',
+        formatter: '访问来源<br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        left: 'center',
+        data: []
+    },
+    series: [
+        {
+            type: 'pie',
+            radius: '50%',
+            center: ['50%', '60%'],
+            selectedMode: 'single',
+            data: []
+        }
+    ]
+};
+
+// 笔记分析
+// 笔记数趋势
+export const lineNoteNumberOption = {
+    color:['#396AF2'],
+    legend: {
+        data: [''],
+        icon: 'circle',   //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+        itemWidth: 15,  // 设置宽度
+        itemHeight: 15, // 设置高度
+        itemGap: 20 // 设置间距
+    },
+    tooltip: {                                      //提示框组件
+        trigger: 'axis'                             //触发类型,'item'数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。 'axis'坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: []
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            splitLine: {
+                lineStyle:{
+                    type:'dashed'    //设置网格线类型 dotted：虚线   solid:实线
+                }
+            },
+            axisLine:{ //y轴
+                show:false
+            }
+        },
+    ],
+    series: [
+        {
+            name: '',
+            type: 'line',
+            data: [],
+            smooth: true,
+            symbol: 'none',
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                        [
+                            {
+                                offset: 0, color: '#396AF2' // 0% 处的颜色
+                            },
+                            {
+                                offset: 1, color: '#fff' // 100% 处的颜色
+                            }
+                        ]
+                    )
+                }
+            }
+        }
+    ],
+    grid: {
+        x: 50,   //左侧与y轴的距离
+        y: 35,   //top部与x轴的距离
+        x2: 40,   //右侧与y轴的距离
+        y2: 30    //bottom部与x轴的距离
+    }
+}
+
+// 笔记类型
+export const PieNoteTypeOption = {
+    color:['#396AF2', '#F5A20A'],
+    tooltip: {
+        trigger: 'item',
+        formatter: '访问来源<br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        left: 'center',
+        data: []
+    },
+    series: [
+        {
+            type: 'pie',
+            radius: '60%',
+            center: ['50%', '60%'],
+            selectedMode: 'single',
+            data: []
+        }
+    ]
+};
+
+// 笔记评论词云
+export const noteCommentOption = {
+    // 产生随机颜色值
+    textStyle: {
+        normal: {
+            fontFamily: 'sans-serif',
+            fontWeight: 'bold',
+            // Color can be a callback function or a color string
+            color: () => {
+                // Random color
+                return colors[parseInt(Math.random() * 7)]
+            }
+        },
+        emphasis: {
+            shadowBlur: 10,
+            shadowColor: '#333'
+        }
+    },
+    tooltip: {
+        formatter: function (params) {
+            return params.marker + params.name + '：' + params.value
+        }
+    },
+    series: [
+        {
+            height: 220,
+            name: '词频数',
+            type: 'wordCloud',
+            textRotation: [0, 45, 90, -45],
+            textPadding: 0,
+            autoSize: {
+                enable: true,
+                minSize: 12
+            },
+            data: []
+        }
+    ]
+}
+
+// 笔记评论情感
+export const PieNoteCommitOption = {
+    color:['#396AF2', '#F5A20A'],
+    tooltip: {
+        trigger: 'item',
+        formatter: '访问来源<br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        left: 'center',
+        data: []
+    },
+    series: [
+        {
+            type: 'pie',
+            radius: '60%',
+            center: ['50%', '60%'],
+            selectedMode: 'single',
+            data: []
+        }
+    ]
+};
+
+// 笔记内容词云
+export const worldNoteCommentOption = {
+    // 产生随机颜色值
+    textStyle: {
+        normal: {
+            fontFamily: 'sans-serif',
+            fontWeight: 'bold',
+            // Color can be a callback function or a color string
+            color: () => {
+                // Random color
+                return colors[parseInt(Math.random() * 7)]
+            }
+        },
+        emphasis: {
+            shadowBlur: 10,
+            shadowColor: '#333'
+        }
+    },
+    tooltip: {
+        formatter: function (params) {
+            return params.marker + params.name + '：' + params.value
+        }
+    },
+    series: [
+        {
+            height: 220,
+            name: '词频数',
+            type: 'wordCloud',
+            textRotation: [0, 45, 90, -45],
+            textPadding: 0,
+            autoSize: {
+                enable: true,
+                minSize: 12
+            },
+            data: []
+        }
+    ]
+}
+
+// 笔记话题分布
+export const noteTalkOption = {
+    legend: {
+        data: [],
+        icon: 'circle',   //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+        itemWidth: 15,  // 设置宽度
+        itemHeight: 15, // 设置高度
+        itemGap: 20 // 设置间距
+    },
+    calculable: true,
+    tooltip: {                                      //提示框组件
+        trigger: 'axis'                             //触发类型,'item'数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。 'axis'坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: []
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            splitLine: {
+                lineStyle:{
+                    type:'dashed'    //设置网格线类型 dotted：虚线   solid:实线
+                }
+            },
+            axisLine:{ //y轴
+                show:false
+            }
+        },
+    ],
+    series: [
+        {
+            name: '',
+            type: 'bar',
+            barWidth : 25,
+            itemStyle: {    //柱状颜色和圆角
+                color: '#396AF2'
+            },
+            data: []
+        }
+    ],
+    grid: {
+        x: 40,   //左侧与y轴的距离
         y: 35,   //top部与x轴的距离
         x2: 40,   //右侧与y轴的距离
         y2: 30    //bottom部与x轴的距离
